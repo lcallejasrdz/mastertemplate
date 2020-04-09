@@ -9,7 +9,7 @@
 
 ## About me
 
-I'm Eduardo Callejas
+I'm Eduardo Callejas Rodríguez
 
 ## About Laravel
 
