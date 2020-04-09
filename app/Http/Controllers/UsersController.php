@@ -9,12 +9,13 @@ class UsersController extends Controller
 {
     public function __construct()
     {
-        $this->active = \Request::route()->getName();
+        // General
+        $this->active = explode('.',\Request::route()->getName())[0];
+        $this->word = trans('module_'.$this->active.'.controller.word');
 
         // Index
         $this->model = trans('module_'.$this->active.'.controller.model');
         $this->select = trans('module_'.$this->active.'.controller.select');
-        $this->word = trans('module_'.$this->active.'.controller.word');
         $this->columns = Arr::add($this->select, count($this->select), 'actions');
         // 1 = (show, edit, delete)
         // 2 = (show, edit)
@@ -25,8 +26,13 @@ class UsersController extends Controller
         // 7 = (delete)
         $this->actions = 1;
 
+        // Read
+        $this->parameter = \Request::route()->parameter('slug');
+        $this->full_model = 'App\\View'.$this->model;
+        $this->item = $this->full_model::firstWhere('slug', $this->parameter);
+
         // Final compact
-        $this->compact = ['view', 'active', 'model', 'select', 'word', 'columns', 'actions'];
+        $this->compact = ['view', 'active', 'word', 'model', 'select', 'columns', 'actions', 'item'];
     }
 
     /**
@@ -39,12 +45,34 @@ class UsersController extends Controller
         $view = 'index';
 
         $active = $this->active;
+        $word = $this->word;
         $model = $this->model;
         $select = $this->select;
-        $word = $this->word;
         $columns = $this->columns;
         $actions = $this->actions;
+        $item = null;
 
         return view('admin.crud.list', compact($this->compact));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show()
+    {
+        $view = 'show';
+
+        $active = $this->active;
+        $word = $this->word;
+        $model = null;
+        $select = null;
+        $columns = null;
+        $actions = null;
+        $item = $this->item;
+
+        return view('admin.crud.show', compact($this->compact, 'item'));
     }
 }

@@ -14,23 +14,24 @@ class UsersModuleTest extends TestCase
     function itLoadsTheUsersListPage()
     {
         $route = 'users';
-        $word = trans('module_'.$route.'.controller.word');
+        $title = trans('module_'.$route.'.controller.word');
 
         $this->get('/'.$route)
             ->assertStatus(200)
-            ->assertSee($word);
+            ->assertSee($title);
     }
 
     /**
      * @test
      */
-    // function itLoadsTheUserDetailPage()
-    // {
-    //     $route = 'users';
-    //     $word = trans('module_'.$route.'.controller.word');
+    function itLoadsTheUserDetailPage()
+    {
+        $user = 'eduardo-callejas';
+        $route = 'users';
+        $word = trans('crud.read.title');
 
-    //     $this->get('/'.$route.'/'.$user)
-    //         ->assertStatus(200)
-    //         ->assertSee($word);
-    // }
+        $this->get('/'.$route.'/'.$user)
+            ->assertStatus(200)
+            ->assertSee($word);
+    }
 }

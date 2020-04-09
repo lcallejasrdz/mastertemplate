@@ -186,5 +186,9 @@ return [
         'id'                    => 'ID',
         'created_at'            => 'creado',
         'actions'               => 'acciones',
+        'slug'                  => 'slug',
+        'last_login'            => 'Último inicio de sesión',
+        'role_id'               => 'perfil',
+        'updated_at'            => 'actualizado',
     ],
 ];

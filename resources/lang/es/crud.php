@@ -4,18 +4,25 @@ return [
     'dashboard'             => 'Dashboard',
     'management'            => 'Administración',
     'manage'                => 'Gestionar',
+
     // List
     'sidebar'               => [
         'list'                  => 'Lista',
         'add'                   => 'Agregar',
         'deleted'               => 'Eliminados',
     ],
+
     // Create
     'create'                => [
         'message'               => [
             'success'           => 'El registro se ha realizado con éxito',
             'error'             => 'Error al procesar el registro',
         ],
+    ],
+
+    // Read
+    'read'                  => [
+        'title'                 => 'Información',
     ],
 
     // Create
