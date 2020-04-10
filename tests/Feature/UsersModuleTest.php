@@ -8,6 +8,8 @@ use Tests\TestCase;
 
 class UsersModuleTest extends TestCase
 {
+    use RefreshDatabase;
+    
     /**
      * @test
      */

@@ -15,7 +15,6 @@ class CreateViewUsersTable extends Migration
     {
         DB::statement("
             CREATE VIEW view_users AS
-            (
                 SELECT
                     users.id,
                     users.slug,
@@ -32,7 +31,6 @@ class CreateViewUsersTable extends Migration
                     JOIN roles ON roles.id = users.role_id
 
                 WHERE users.deleted_at IS NULL
-            )
         ");
     }
 

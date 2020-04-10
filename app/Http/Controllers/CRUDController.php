@@ -29,7 +29,8 @@ class CRUDController extends Controller
         // Read
         $this->parameter = \Request::route()->parameter('slug');
         $this->full_model = 'App\\View'.$this->model;
-        $this->item = $this->full_model::firstWhere('slug', $this->parameter);
+        $item = $this->full_model::where('slug', $this->parameter)->first();
+        $this->item = $item ? $item->toArray() : array();
 
         // Final compact
         $this->compact = ['view', 'active', 'word', 'model', 'select', 'columns', 'actions', 'item'];

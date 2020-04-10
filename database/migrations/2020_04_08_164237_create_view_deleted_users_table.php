@@ -15,7 +15,6 @@ class CreateViewDeletedUsersTable extends Migration
     {
         DB::statement("
             CREATE VIEW view_deleted_users AS
-            (
                 SELECT
                     users.id,
                     users.slug,
@@ -34,7 +33,6 @@ class CreateViewDeletedUsersTable extends Migration
 
                 WHERE users.role_id <= 3
                     AND users.deleted_at IS NOT NULL
-            )
         ");
     }
 

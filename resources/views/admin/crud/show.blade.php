@@ -18,7 +18,7 @@
             <div class="table-responsive">
                 <table class="table table-bordered table-striped">
                     <tbody>
-                        @foreach($item->toArray() as $column => $value)
+                        @foreach($item as $column => $value)
                             <tr>
                                 <th>
                                     {{ ucfirst(trans('validation.attributes.'.$column)) }}
