@@ -39,6 +39,12 @@ return [
             'success'           => 'El registro se ha eliminado con éxito',
             'error'             => 'Error al eliminar el registro',
         ],
+        'modal'             => [
+            'title'             => 'Eliminar registro',
+            'question'          => '¿Seguro que deseas eliminar el registro con ID:',
+            'cancel'            => 'Cancelar',
+            'delete'            => 'Eliminar',
+        ],
     ],
 
     // Create

@@ -40,7 +40,6 @@ class DataTablesController extends Controller
                     // 7 = (delete)
                     $actions = '';
                     if($actions_value == 1 || $actions_value == 2 || $actions_value == 3 || $actions_value == 5){
-                        // $actions .= '<a href='. route($active.'.show', $row->id) .'><i class="fa fa-info fa-fw text-primary" title="view"></i></a>';
                         $actions .= ' <a href="'. route($active.'.show', $row->slug) .'" class="btn btn-primary btn-circle btn-sm"><i class="fas fa-info-circle"></i></a>';
                     }
                     if($actions_value == 1 || $actions_value == 2 || $actions_value == 4 || $actions_value == 6){
@@ -48,8 +47,7 @@ class DataTablesController extends Controller
                         $actions .= ' <a href="#" class="btn btn-success btn-circle btn-sm"><i class="fas fa-edit"></i></a>';
                     }
                     if($actions_value == 1 || $actions_value == 3 || $actions_value == 4 || $actions_value == 7){
-                        // $actions .= '<a href="#" data-toggle="modal" data-target="#delete_modal" onClick="deleteModal('.$row->id.')"><i class="fa fa-remove fa-fw text-danger" title="delete"></i></a>';
-                        $actions .= ' <a href="#" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
+                        $actions .= ' <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#deleteModal" onClick="deleteModal('.$row->id.')"><i class="fas fa-trash"></i></a>';
                     }
                 }else{
                 	$actions = '';

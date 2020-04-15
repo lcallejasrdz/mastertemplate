@@ -31,6 +31,7 @@
 								<p class="mb-4">@yield('panel-heading')</p>
 							</div>
 						</div>
+						@include('admin.layouts.sections.alerts')
 						@yield('content')
 					</div>
 					<!-- /.container-fluid -->
@@ -48,7 +49,9 @@
 			<i class="fas fa-angle-up"></i>
 		</a>
 		<!-- Logout Modal-->
-		@include('admin.layouts.sections.modal')
+		@include('admin.layouts.modals.logout_modal')
+		<!-- Other Modals-->
+		@yield('modals')
 		@include('admin.layouts.sections.scripts')
 		@yield('scripts')
 	</body>

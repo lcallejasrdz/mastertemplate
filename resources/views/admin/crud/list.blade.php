@@ -24,6 +24,10 @@
     </div>
 @endsection
 
+@section('modals')
+    @include('admin.layouts.modals.delete_modal')
+@endsection
+
 @section('scripts')
     {{-- DataTables --}}
     @include('plugins.datatables.dataTables')

@@ -23,3 +23,4 @@ Route::post('/datatables', array('as' => 'datatables', 'uses' => 'DataTablesCont
 // Users
 Route::get('/users', array('as' => 'users', 'uses' => 'CRUDController@index'));
 Route::get('/users/{slug}', array('as' => 'users.show', 'uses' => 'CRUDController@show'));
+Route::delete('/users/delete', array('as' => 'users.delete', 'uses' => 'CRUDController@destroy'));

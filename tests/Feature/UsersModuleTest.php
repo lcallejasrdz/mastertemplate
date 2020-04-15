@@ -36,4 +36,17 @@ class UsersModuleTest extends TestCase
             ->assertStatus(200)
             ->assertSee($word);
     }
+
+    /**
+     * @test
+     */
+    function itTestsTheUserDeleteMethod()
+    {
+        $user = '1';
+        $route = 'users';
+        
+        $response = $this->call('DELETE', '/'.$route.'/delete', ['id' => $user, '_token' => csrf_token()]);
+        $this->assertEquals(302, $response->getStatusCode());
+        $this->assertDeleted($route, ['deleted_at' => null, 'id' => $user]);
+    }
 }

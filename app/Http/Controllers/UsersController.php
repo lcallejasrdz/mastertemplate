@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Redirect;
+use Sentinel;
 
 class UsersController extends Controller
 {
@@ -28,8 +30,8 @@ class UsersController extends Controller
 
         // Read
         $this->parameter = \Request::route()->parameter('slug');
-        $this->full_model = 'App\\View'.$this->model;
-        $this->item = $this->full_model::firstWhere('slug', $this->parameter);
+        $this->full_model_view = 'App\\View'.$this->model;
+        $this->item = $this->full_model_view::firstWhere('slug', $this->parameter);
 
         // Final compact
         $this->compact = ['view', 'active', 'word', 'model', 'select', 'columns', 'actions', 'item'];
@@ -74,5 +76,21 @@ class UsersController extends Controller
         $item = $this->item;
 
         return view('admin.crud.show', compact($this->compact, 'item'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request)
+    {
+        $this->full_model = 'App\\'.$this->model;
+        if($this->full_model::destroy($request->id)){
+            return Redirect::route($this->active)->with('success', trans('crud.delete.message.success'));
+        }else{
+            return Redirect::back()->with('danger', trans('crud.delete.message.error'));
+        }
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Redirect;
 
 class CRUDController extends Controller
 {
@@ -75,5 +76,21 @@ class CRUDController extends Controller
         $item = $this->item;
 
         return view('admin.crud.show', compact($this->compact, 'item'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request)
+    {
+        $this->full_model = 'App\\'.$this->model;
+        if($this->full_model::destroy($request->id)){
+            return Redirect::route($this->active)->with('success', trans('crud.delete.message.success'));
+        }else{
+            return Redirect::back()->with('danger', trans('crud.delete.message.error'));
+        }
     }
 }
