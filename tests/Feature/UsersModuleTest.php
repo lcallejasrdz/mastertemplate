@@ -49,4 +49,17 @@ class UsersModuleTest extends TestCase
         $this->assertEquals(302, $response->getStatusCode());
         $this->assertDeleted($route, ['deleted_at' => null, 'id' => $user]);
     }
+    
+    /**
+     * @test
+     */
+    function itLoadsTheDeletedUsersListPage()
+    {
+        $route = 'users';
+        $title = trans('module_'.$route.'.controller.deleted_word');
+
+        $this->get('/'.$route.'/deleted')
+            ->assertStatus(200)
+            ->assertSee($title);
+    }
 }
