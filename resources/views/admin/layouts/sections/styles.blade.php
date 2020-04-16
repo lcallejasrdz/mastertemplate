@@ -4,4 +4,4 @@
 <!-- Custom styles for this template-->
 <link href="{{ env('APP_URL') }}/css/sb-admin-2.min.css" rel="stylesheet">
 <!-- Custom styles for this page -->
-<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<link href="{{ env('APP_URL') }}/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
