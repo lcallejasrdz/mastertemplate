@@ -5,6 +5,9 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use App\User;
+use Faker\Generator as Faker;
+use Illuminate\Support\Str;
 
 class UsersModuleTest extends TestCase
 {
@@ -42,12 +45,21 @@ class UsersModuleTest extends TestCase
      */
     function itTestsTheUserDeleteMethod()
     {
-        $user = '1';
         $route = 'users';
-        
-        $response = $this->call('DELETE', '/'.$route.'/delete', ['id' => $user, '_token' => csrf_token()]);
-        $this->assertEquals(302, $response->getStatusCode());
-        $this->assertDeleted($route, ['deleted_at' => null, 'id' => $user]);
+
+        $user = factory(User::class)->create([
+            'slug' => Str::slug('Eduardo Callejas'),
+            'username' => 'lcallejasrdz',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'first_name' => 'Eduardo',
+            'last_name' => 'Callejas',
+            'email' => 'lcallejasrdz@gmail.com',
+            'role_id' => 1,
+        ]);
+
+        $this->call('DELETE', '/'.$route.'/delete', ['id' => $user->id, '_token' => csrf_token()]);
+
+        $this->assertCount(0, User::all());
     }
     
     /**
@@ -61,5 +73,31 @@ class UsersModuleTest extends TestCase
         $this->get('/'.$route.'/deleted')
             ->assertStatus(200)
             ->assertSee($title);
+    }
+
+    /**
+     * @test
+     */
+    function itTestsTheUserRestoreMethod()
+    {
+        $route = 'users';
+
+        $user = factory(User::class)->create([
+            'slug' => Str::slug('Eduardo Callejas'),
+            'username' => 'lcallejasrdz',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'first_name' => 'Eduardo',
+            'last_name' => 'Callejas',
+            'email' => 'lcallejasrdz@gmail.com',
+            'role_id' => 1,
+        ]);
+
+        $this->call('DELETE', '/'.$route.'/delete', ['id' => $user->id, '_token' => csrf_token()]);
+
+        $this->assertCount(0, User::all());
+
+        $this->call('POST', '/'.$route.'/restore', ['id' => $user->id, '_token' => csrf_token()]);
+
+        $this->assertCount(1, User::all());
     }
 }
