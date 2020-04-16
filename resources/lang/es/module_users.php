@@ -22,6 +22,7 @@ return [
             'created_at',
         ],
         'word'                  => $plural_esp_ucfirst,
+        'deleted_word'          => $plural_esp_ucfirst.' eliminados',
     ],
     // Sidebar
     'sidebar'               => [

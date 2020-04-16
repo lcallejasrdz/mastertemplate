@@ -17,15 +17,13 @@
         <div class="card-body">
             {{ Form::token() }}
             @include('admin.modules.datatable')
-            {{-- @if($actions == 1 || $actions == 3 || $actions == 4 || $actions == 7)
-                @include('admin.delete_modal')
-            @endif --}}
         </div>
     </div>
 @endsection
 
 @section('modals')
     @include('admin.layouts.modals.delete_modal')
+    @include('admin.layouts.modals.restore_modal')
 @endsection
 
 @section('scripts')

@@ -53,5 +53,11 @@ return [
             'success'           => 'El registro se ha restaurado con éxito',
             'error'             => 'Error al restaurar el registro',
         ],
+        'modal'             => [
+            'title'             => 'Restaurar registro',
+            'question'          => '¿Seguro que deseas restaurar el registro con ID:',
+            'cancel'            => 'Cancelar',
+            'restore'           => 'Restaurar',
+        ],
     ],
 ];

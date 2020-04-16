@@ -51,8 +51,7 @@ class DataTablesController extends Controller
                     }
                 }else{
                 	$actions = '';
-                    $actions .= ' <a href="#" class="btn btn-warning btn-circle btn-sm"><i class="fas fa-exclamation-triangle"></i></a>';
-                    // $actions = '<a href="#" data-toggle="modal" data-target="#restore_modal" onClick="restoreModal('.$row->id.')"><i class="fa fa-repeat fa-fw text-warning" title="delete"></i></a>';
+                    $actions .= ' <a href="#" class="btn btn-warning btn-circle btn-sm" data-toggle="modal" data-target="#restoreModal" onClick="restoreModal('.$row->id.')"><i class="fas fa-exclamation-triangle"></i></a>';
                 }
 
                 return $actions;

@@ -13,7 +13,7 @@
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" id="id_delete" name="id">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ trans('crud.delete.modal.cancel') }}</button>
+                    <button type="button" class="btn btn-light" data-dismiss="modal">{{ trans('crud.delete.modal.cancel') }}</button>
                     <input type="submit" class="btn btn-danger" value="{{ trans('crud.delete.modal.delete') }}">
                 </form>
             </div>

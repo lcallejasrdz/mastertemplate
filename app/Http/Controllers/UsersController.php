@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Redirect;
-use Sentinel;
 
 class UsersController extends Controller
 {
@@ -30,8 +29,12 @@ class UsersController extends Controller
 
         // Read
         $this->parameter = \Request::route()->parameter('slug');
-        $this->full_model_view = 'App\\View'.$this->model;
-        $this->item = $this->full_model_view::firstWhere('slug', $this->parameter);
+        $this->full_model = 'App\\View'.$this->model;
+        $item = $this->full_model::where('slug', $this->parameter)->first();
+        $this->item = $item ? $item->toArray() : array();
+
+        // Deleted
+        $this->deleted_word = trans('module_'.$this->active.'.controller.deleted_word');
 
         // Final compact
         $this->compact = ['view', 'active', 'word', 'model', 'select', 'columns', 'actions', 'item'];
@@ -91,6 +94,43 @@ class UsersController extends Controller
             return Redirect::route($this->active)->with('success', trans('crud.delete.message.success'));
         }else{
             return Redirect::back()->with('danger', trans('crud.delete.message.error'));
+        }
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getRestore()
+    {
+        $view = 'deleted';
+
+        $active = $this->active;
+        $word = $this->deleted_word;
+        $model = $this->model;
+        $select = $this->select;
+        $columns = $this->columns;
+        $actions = $this->actions;
+        $item = null;
+
+        return view('admin.crud.list', compact($this->compact));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function postRestore(Request $request)
+    {
+        $this->full_model = 'App\\'.$this->model;
+        if($this->full_model::onlyTrashed()->find($request->id)->restore()){
+            return Redirect::route($this->active.'.deleted')->with('success', trans('crud.restore.message.success'));
+        }else{
+            return Redirect::back()->with('danger', trans('crud.restore.message.error'));
         }
     }
 }

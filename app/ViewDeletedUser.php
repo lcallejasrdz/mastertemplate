@@ -27,6 +27,6 @@ class ViewDeletedUser extends Model
 
     public function scopeData($query)
     {
-        return $query->where('id', '!=', 1)->get($this->select);
+        return $query->get();
     }
 }
