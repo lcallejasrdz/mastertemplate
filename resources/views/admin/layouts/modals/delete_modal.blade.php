@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">{{ trans('crud.delete.modal.question') }} <span id="show_id_delete"></span>?</div>
             <div class="modal-footer">
-                <form method="post" action="{{ route('users.delete') }}">
+                <form method="post" action="{{ route($active.'.delete') }}">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" id="id_delete" name="id">

@@ -21,7 +21,17 @@ return [
             'email',
             'created_at',
         ],
+        'create_fields'         => [
+            'slug',
+            'username',
+            'password',
+            'first_name',
+            'last_name',
+            'email',
+            'role_id',
+        ],
         'word'                  => $plural_esp_ucfirst,
+        'create_word'           => 'Agregar '.$singular_esp_lcfirst,
         'deleted_word'          => $plural_esp_ucfirst.' eliminados',
     ],
     // Sidebar

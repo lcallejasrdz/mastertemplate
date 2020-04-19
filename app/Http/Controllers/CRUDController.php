@@ -27,6 +27,9 @@ class CRUDController extends Controller
         // 7 = (delete)
         $this->actions = 1;
 
+        // Create
+        $this->create_word = trans('module_'.$this->active.'.controller.create_word');
+
         // Read
         $this->parameter = \Request::route()->parameter('slug');
         $this->full_model = 'App\\View'.$this->model;
@@ -58,6 +61,26 @@ class CRUDController extends Controller
         $item = null;
 
         return view('admin.crud.list', compact($this->compact));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $view = 'index';
+
+        $active = $this->active;
+        $word = $this->create_word;
+        $model = null;
+        $select = null;
+        $columns = null;
+        $actions = null;
+        $item = null;
+
+        return view('admin.crud.form', compact($this->compact));
     }
 
     /**

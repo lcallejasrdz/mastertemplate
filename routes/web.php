@@ -24,5 +24,7 @@ Route::post('/datatables', array('as' => 'datatables', 'uses' => 'DataTablesCont
 Route::get('/users/deleted', array('as' => 'users.deleted', 'uses' => 'CRUDController@getRestore'));
 Route::post('/users/restore', array('as' => 'users.restore', 'uses' => 'CRUDController@postRestore'));
 Route::get('/users', array('as' => 'users', 'uses' => 'CRUDController@index'));
+Route::get('/users/create', array('as' => 'users.create', 'uses' => 'CRUDController@create'));
+Route::post('/users/create', array('as' => 'users.store', 'uses' => 'UsersController@store'));
 Route::get('/users/{slug}', array('as' => 'users.show', 'uses' => 'CRUDController@show'));
 Route::delete('/users/delete', array('as' => 'users.delete', 'uses' => 'CRUDController@destroy'));
