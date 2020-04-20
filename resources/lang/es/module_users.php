@@ -1,19 +1,15 @@
 <?php
 
-$singular_eng_ucfirst = "User";
-$singular_eng_lcfirst = "user";
-$plural_eng_ucfirst = "Users";
-$plural_eng_lcfirst = "users";
+$singular_ucfirst = "User";
 
-$singular_esp_ucfirst = "Usuario";
-$singular_esp_lcfirst = "usuario";
-$plural_esp_ucfirst = "Usuarios";
-$plural_esp_lcfirst = "usuarios";
+$singular_ucfirst = "Usuario";
+$singular_lcfirst = "usuario";
+$plural_ucfirst = "Usuarios";
 
 return [
     // Controller
     'controller'            => [
-        'model'                 => $singular_eng_ucfirst,
+        'model'                 => $singular_ucfirst,
         'select'                => [
             'id',
             'first_name',
@@ -30,15 +26,15 @@ return [
             'email',
             'role_id',
         ],
-        'word'                  => $plural_esp_ucfirst,
-        'create_word'           => 'Agregar '.$singular_esp_lcfirst,
-        'edit_word'             => 'Editar '.$singular_esp_lcfirst,
-        'deleted_word'          => $plural_esp_ucfirst.' eliminados',
+        'word'                  => $plural_ucfirst,
+        'create_word'           => 'Agregar '.$singular_lcfirst,
+        'edit_word'             => 'Editar '.$singular_lcfirst,
+        'deleted_word'          => $plural_ucfirst.' eliminados',
     ],
     // Sidebar
     'sidebar'               => [
-        'route_title_singular'  => $singular_esp_ucfirst,
-        'route_title_plural'    => $plural_esp_ucfirst,
+        'route_title_singular'  => $singular_ucfirst,
+        'route_title_plural'    => $plural_ucfirst,
         'route_font_awesome'    => 'users',
     ],
 ];
