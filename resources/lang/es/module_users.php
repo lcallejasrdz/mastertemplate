@@ -1,6 +1,6 @@
 <?php
 
-$singular_ucfirst = "User";
+$model = "User";
 
 $singular_ucfirst = "Usuario";
 $singular_lcfirst = "usuario";
@@ -9,7 +9,7 @@ $plural_ucfirst = "Usuarios";
 return [
     // Controller
     'controller'            => [
-        'model'                 => $singular_ucfirst,
+        'model'                 => $model,
         'select'                => [
             'id',
             'first_name',
