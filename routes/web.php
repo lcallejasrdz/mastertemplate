@@ -20,13 +20,17 @@ Route::get('/', function () {
 // Datatables
 Route::post('/datatables', array('as' => 'datatables', 'uses' => 'DataTablesController@data'));
 
-// Users
-Route::get('/users/deleted', array('as' => 'users.deleted', 'uses' => 'CRUDController@getRestore'));
-Route::post('/users/restore', array('as' => 'users.restore', 'uses' => 'CRUDController@postRestore'));
-Route::get('/users', array('as' => 'users', 'uses' => 'CRUDController@index'));
-Route::delete('/users/delete', array('as' => 'users.delete', 'uses' => 'CRUDController@destroy'));
-Route::get('/users/create', array('as' => 'users.create', 'uses' => 'CRUDController@create'));
-Route::post('/users/create', array('as' => 'users.store', 'uses' => 'UsersController@store'));
-Route::get('/users/{id}/edit', array('as' => 'users.edit', 'uses' => 'CRUDController@edit'));
-Route::put('/users/{id}/edit', array('as' => 'users.update', 'uses' => 'UsersController@update'));
-Route::get('/users/{slug}', array('as' => 'users.show', 'uses' => 'CRUDController@show'));
+// User
+$route = 'users';
+$controller = 'UsersController';
+Route::group(array('prefix' => $route), function () use ($route, $controller) {
+    Route::get('deleted', array('as' => $route.'.deleted', 'uses' => 'CRUDController@getRestore'));
+	Route::post('restore', array('as' => $route.'.restore', 'uses' => 'CRUDController@postRestore'));
+	Route::get('/', array('as' => $route, 'uses' => 'CRUDController@index'));
+	Route::delete('delete', array('as' => $route.'.delete', 'uses' => 'CRUDController@destroy'));
+	Route::get('create', array('as' => $route.'.create', 'uses' => 'CRUDController@create'));
+	Route::post('create', array('as' => $route.'.store', 'uses' => $controller.'@store'));
+	Route::get('{id}/edit', array('as' => $route.'.edit', 'uses' => 'CRUDController@edit'));
+	Route::put('{id}/edit', array('as' => $route.'.update', 'uses' => $controller.'@update'));
+	Route::get('{slug}', array('as' => $route.'.show', 'uses' => 'CRUDController@show'));
+});
