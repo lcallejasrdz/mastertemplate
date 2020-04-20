@@ -41,8 +41,8 @@ class UserRequest extends FormRequest
             }
             case 'PUT': {
                 return [
-                    'username' => 'required|unique:users|min:3|max:255,'.$this->id,
-                    'password' => 'required|min:6|max:16',
+                    'username' => 'required|min:3|max:255|unique:users,username,'.$this->id,
+                    'password' => 'max:16',
                     'first_name' => 'required|min:3|max:255',
                     'last_name' => 'required|min:3|max:255',
                     'email' => 'required|email|unique:users,email,'.$this->id,

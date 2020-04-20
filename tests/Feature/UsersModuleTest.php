@@ -130,4 +130,64 @@ class UsersModuleTest extends TestCase
         $this->call('POST', '/'.$route.'/create', $user);
         $this->assertCount(1, User::all());
     }
+    
+    /**
+     * @test
+     */
+    function itLoadsTheEditUserFormPage()
+    {
+        $route = 'users';
+        $title = trans('module_'.$route.'.controller.edit_word');
+
+        $user = [
+            'slug'          => 'slug',
+            'username'      => 'johnlenon',
+            'password'      => 'asdasd',
+            'first_name'    => 'John',
+            'last_name'     => 'Lenon',
+            'email'         => 'johnlenon@gmail.com',
+            'role_id'       => 1,
+        ];
+
+        $this->call('POST', '/'.$route.'/create', $user);
+        $this->assertCount(1, User::all());
+
+        $this->get('/'.$route.'/1/edit')
+            ->assertStatus(200)
+            ->assertSee($title);
+    }
+
+    /**
+     * @test
+     */
+    function itTestsTheUpdateUserMethod()
+    {
+        $route = 'users';
+
+        $user = [
+            'slug'          => 'slug',
+            'username'      => 'johnlenon',
+            'password'      => 'asdasd',
+            'first_name'    => 'John',
+            'last_name'     => 'Lenon',
+            'email'         => 'johnlenon@gmail.com',
+            'role_id'       => 1,
+        ];
+
+        $this->call('POST', '/'.$route.'/create', $user);
+        $this->assertCount(1, User::all());
+
+        $user = [
+            'slug'          => 'slug',
+            'username'      => 'lalo',
+            'password'      => 'asdasd',
+            'first_name'    => 'lalo',
+            'last_name'     => 'calle',
+            'email'         => 'lalocalle@gmail.com',
+            'role_id'       => 1,
+        ];
+
+        $this->call('PUT', '/'.$route.'/1/edit', $user);
+        $this->assertCount(1, User::all());
+    }
 }

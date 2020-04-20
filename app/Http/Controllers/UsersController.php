@@ -52,4 +52,35 @@ class UsersController extends Controller
             return Redirect::back()->with('error', trans('crud.create.message.error'));
         }
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(MasterRequest $request, $id)
+    {
+        $item = $this->full_model::find($id);
+
+        /* Extras */
+        $role = Sentinel::findRoleById($item->role_id);
+        $role->users()->detach($item);
+
+        $item->fill($request->only($this->create_fields));
+
+        /* Extras */
+        $role = Sentinel::findRoleById($request->role_id);
+        $role->users()->attach($item);
+
+        /* Slug */
+        $item->slug = Str::slug($item->first_name.' '.$item->last_name.' '.$item->id);
+
+        if($item->save()){
+            return Redirect::route($this->active.'.edit', $item->id)->with('success', trans('crud.update.message.success'));
+        }else{
+            return Redirect::back()->with('error', trans('crud.update.message.error'));
+        }
+    }
 }

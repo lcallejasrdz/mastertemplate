@@ -30,11 +30,17 @@ class CRUDController extends Controller
         // Create
         $this->create_word = trans('module_'.$this->active.'.controller.create_word');
 
+        // Edit
+        $this->edit_word = trans('module_'.$this->active.'.controller.edit_word');
+        $this->parameter = \Request::route()->parameter('id');
+        $this->edit_model = 'App\\'.$this->model;
+        $this->edit_item = $this->edit_model::find($this->parameter);
+
         // Read
         $this->parameter = \Request::route()->parameter('slug');
         $this->full_model = 'App\\View'.$this->model;
         $item = $this->full_model::where('slug', $this->parameter)->first();
-        $this->item = $item ? $item->toArray() : array();
+        $this->show_item = $item ? $item->toArray() : array();
 
         // Deleted
         $this->deleted_word = trans('module_'.$this->active.'.controller.deleted_word');
@@ -70,7 +76,7 @@ class CRUDController extends Controller
      */
     public function create()
     {
-        $view = 'index';
+        $view = 'create';
 
         $active = $this->active;
         $word = $this->create_word;
@@ -81,6 +87,27 @@ class CRUDController extends Controller
         $item = null;
 
         return view('admin.crud.form', compact($this->compact));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $view = 'edit';
+
+        $active = $this->active;
+        $word = $this->edit_word;
+        $model = null;
+        $select = null;
+        $columns = null;
+        $actions = null;
+        $item = $this->edit_item;
+
+        return view('admin.crud.form', compact($this->compact, 'item'));
     }
 
     /**
@@ -99,7 +126,7 @@ class CRUDController extends Controller
         $select = null;
         $columns = null;
         $actions = null;
-        $item = $this->item;
+        $item = $this->show_item;
 
         return view('admin.crud.show', compact($this->compact, 'item'));
     }

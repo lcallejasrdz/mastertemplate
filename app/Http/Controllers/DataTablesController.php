@@ -43,8 +43,7 @@ class DataTablesController extends Controller
                         $actions .= ' <a href="'. route($active.'.show', $row->slug) .'" class="btn btn-primary btn-circle btn-sm"><i class="fas fa-info-circle"></i></a>';
                     }
                     if($actions_value == 1 || $actions_value == 2 || $actions_value == 4 || $actions_value == 6){
-                        // $actions .= '<a href='. route($active.'.edit', $row->id) .'><i class="fa fa-edit fa-fw text-success" title="edit"></i></a>';
-                        $actions .= ' <a href="#" class="btn btn-success btn-circle btn-sm"><i class="fas fa-edit"></i></a>';
+                        $actions .= ' <a href="'. route($active.'.edit', $row->id) .'" class="btn btn-success btn-circle btn-sm"><i class="fas fa-edit"></i></a>';
                     }
                     if($actions_value == 1 || $actions_value == 3 || $actions_value == 4 || $actions_value == 7){
                         $actions .= ' <a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#deleteModal" onClick="deleteModal('.$row->id.')"><i class="fas fa-trash"></i></a>';

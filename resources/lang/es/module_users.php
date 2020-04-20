@@ -32,6 +32,7 @@ return [
         ],
         'word'                  => $plural_esp_ucfirst,
         'create_word'           => 'Agregar '.$singular_esp_lcfirst,
+        'edit_word'             => 'Editar '.$singular_esp_lcfirst,
         'deleted_word'          => $plural_esp_ucfirst.' eliminados',
     ],
     // Sidebar
