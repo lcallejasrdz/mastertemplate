@@ -7,10 +7,6 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About me
-
-I'm Eduardo Callejas Rodríguez
-
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
@@ -80,3 +76,34 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Steps to create a new module
+
+1. Create Controller using: php artisan make:controller {Singular}Controller --resource --model:{Singular}
+2. Create Request using: php artisan make:request {Singular}Request
+3. Create Migration using: php artisan make:migration create_{plural}_table -m
+4. Create View using: php artisan make:model View{Singular} -m
+5. Create ViewDeleted using: php artisan make:model ViwDeleted{Singular} -m
+6. Create Seeder using: php artisan make:seeder {Singular}TableSeeder
+7. Create Lang File in: /resources/lang/{lang}
+8. Create Form HTML in: /resources/views/admin/modules/{plural}.blade.php
+9. Create FrontEnd Automatic Test using: php artisan dusk:make {Singular}ModuleTest
+10. Create Backend Automatic Test using: php artisan make:test {Singular}ModuleTest
+
+## Steps to modify the new files
+
+1. Add rule in "app/Http/Requests/{Singular}Request.php"
+2. Add fields in "app/{Singular}.php"
+3. Add fields and scopeData function in "app/View{Singular}.php"
+4. Add fields and scopeData function in "app/ViewDeleted{Singular}.php"
+5. Add fields in "database/{created_migration}.php"
+6. Edit completed file "database/{created_view_migration}.php"
+7. Edit completed file "database/{created_view_deleted_migration}.php"
+8. Edit completed file "database/seeds/{Singular}TableSeeder.php"
+9. Add {Singular}TableSeeder Class in "database/seeds/DatabaseSeeder.php"
+10. Edit file "resources/lang/es/module_{plural}.php"
+11. Add fields in "resources/lang/es/validation.php"
+12. Create form HTML in "resources/views/admin/modules/{plural}.blade.php"
+13. Edit file "routes/web.php"
+14. Edit completed "tests/Browser/{Singular}ModuleTest.php"
+15. Edit completed "tests/Feature/{Singular}ModuleTest.php"

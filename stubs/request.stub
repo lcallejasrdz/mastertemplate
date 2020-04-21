@@ -13,7 +13,7 @@ class {{ class }} extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,30 @@ class {{ class }} extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
-        ];
+        switch ($this->method()) {
+            case 'GET': {
+                return [];
+            }
+            case 'DELETE': {
+                return [];
+            }
+            case 'POST': {
+                return [
+                    'name' => 'required|min:3|max:255',
+                ];
+            }
+            case 'PUT': {
+                return [
+                    'name' => 'required|min:3|max:255',
+                ];
+            }
+            case 'PATCH': {
+                return [];
+            }
+            default: {
+                break;
+            }
+        }
+        return [];
     }
 }

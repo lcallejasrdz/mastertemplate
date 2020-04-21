@@ -9,7 +9,7 @@ use App\User;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
-class UsersModuleTest extends TestCase
+class UserModuleTest extends TestCase
 {
     use RefreshDatabase;
     

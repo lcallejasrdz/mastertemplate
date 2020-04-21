@@ -8,7 +8,7 @@ use Tests\DuskTestCase;
 
 use App\User;
 
-class UsersModuleTest extends DuskTestCase
+class UserModuleTest extends DuskTestCase
 {
     /**
      * @test

@@ -22,7 +22,7 @@ Route::post('/datatables', array('as' => 'datatables', 'uses' => 'DataTablesCont
 
 // User
 $route = 'users';
-$controller = 'UsersController';
+$controller = 'UserController';
 Route::group(array('prefix' => $route), function () use ($route, $controller) {
     Route::get('deleted', array('as' => $route.'.deleted', 'uses' => 'CRUDController@getRestore'));
 	Route::post('restore', array('as' => $route.'.restore', 'uses' => 'CRUDController@postRestore'));

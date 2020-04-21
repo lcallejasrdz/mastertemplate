@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Arr;
 use Redirect;
 use App\Http\Requests\UserRequest as MasterRequest;
 use Illuminate\Support\Str as Str;
 use Sentinel;
 use Activation;
 
-class UsersController extends Controller
+class UserController extends Controller
 {
     public function __construct()
     {

@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 
 use Illuminate\Support\Str as Str;
 
-class UsersTableSeeder extends Seeder
+class UserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
