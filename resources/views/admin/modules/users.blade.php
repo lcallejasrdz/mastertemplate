@@ -1,8 +1,6 @@
 <div class="form-group">
 	<label for="username">{{ ucfirst(trans('validation.attributes.username')) }}</label>
-	@isset($item)
-		<input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="@isset($item) {{ $item->username }} @endisset">
-	@endisset
+	<input type="text" class="form-control @error('username') is-invalid @enderror" id="username" name="username" value="@isset($item) {{ $item->username }} @endisset">
 	@error('username')
 	    <div class="alert alert-danger">{{ $message }}</div>
 	@enderror
@@ -11,6 +9,9 @@
 <div class="form-group">
 	<label for="password">{{ ucfirst(trans('validation.attributes.password')) }}</label>
 	<input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
+	@isset($item)
+		<small id="emailHelp" class="form-text text-muted">{{ trans('crud.update.password_help') }}</small>
+	@endisset
 	@error('password')
 	    <div class="alert alert-danger">{{ $message }}</div>
 	@enderror

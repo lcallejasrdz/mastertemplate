@@ -16,13 +16,14 @@
         <div class="card-body">
         	@if($view == 'create')
             	<form method="post" action="{{ route($active.'.store') }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
             @else
             	<form method="post" action="{{ route($active.'.update', ['id' => $item->id]) }}">
 	            	<input type="hidden" name="_method" value="PUT">
 	            	<input type="hidden" name="_token" value="{{ csrf_token() }}">
             @endif
                 @include('admin.modules.'.$active)
-                <input type="submit" class="btn btn-primary" value="{{ trans('crud.create.add') }}">
+                <input type="submit" class="btn {{ (isset($item) ? 'btn-success' : 'btn-primary') }}" value="{{ (isset($item) ? trans('crud.update.update') : trans('crud.create.add'))  }}">
             </form>
         </div>
     </div>
