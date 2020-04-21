@@ -8,7 +8,11 @@
 @section('page-header', $word)
 
 @section('panel-heading')
-    <i class="fa fa-plus fa-fw"></i> {{ trans('crud.sidebar.add') }}
+    @if($view == 'create')
+        <i class="fa fa-plus fa-fw"></i> {{ trans('crud.sidebar.add') }}
+    @else
+        <i class="fa fa-pen fa-fw"></i> {{ trans('crud.sidebar.edit') }}
+    @endif
 @endsection
 
 @section('content')

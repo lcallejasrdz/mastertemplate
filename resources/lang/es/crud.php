@@ -9,6 +9,7 @@ return [
     'sidebar'               => [
         'list'                  => 'Lista',
         'add'                   => 'Agregar',
+        'edit'                  => 'Editar',
         'deleted'               => 'Eliminados',
     ],
 

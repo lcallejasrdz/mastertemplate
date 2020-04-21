@@ -31,9 +31,6 @@ class UsersController extends Controller
     {
         $item = $this->full_model::create($request->only($this->create_fields));
 
-        /* Slug */
-        $item->slug = Str::slug($item->first_name.' '.$item->last_name.' '.$item->id);
-
         $user = Sentinel::findById($item->id);
         $activation = Activation::create($user);
         Activation::complete($user, $activation->code);
@@ -43,7 +40,7 @@ class UsersController extends Controller
         $role->users()->attach($item);
 
         /* Slug */
-        $item->slug = Str::slug($item->name.' '.$item->id);
+        $item->slug = Str::slug($item->first_name.' '.$item->last_name.' '.$item->id);
 
         if($item->save()){
             return Redirect::route($this->active.'.create')->with('success', trans('crud.create.message.success'));
