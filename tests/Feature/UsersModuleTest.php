@@ -31,13 +31,13 @@ class UsersModuleTest extends TestCase
      */
     function itLoadsTheUserDetailPage()
     {
-        $user = 'eduardo-callejas';
+        $slug = 'eduardo-callejas-1';
         $route = 'users';
-        $word = trans('crud.read.title');
+        $title = trans('crud.read.title');
 
-        $this->get('/'.$route.'/'.$user)
+        $this->get('/'.$route.'/'.$slug)
             ->assertStatus(200)
-            ->assertSee($word);
+            ->assertSee($title);
     }
 
     /**
